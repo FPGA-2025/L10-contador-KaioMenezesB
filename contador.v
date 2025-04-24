@@ -8,6 +8,17 @@ module Contador (
     output reg [7:0] saida
 );
 
-// Insira seu código aqui
+always @(posedge clk or negedge rst_n) begin
+        if (!rst_n) begin
+            saida <= 8'h6A;
+        end else begin
+            if (acrescer & ~decrecer)
+                saida <= saida + 1;
+            else if (~acrescer & decrecer)
+                saida <= saida - 1;
+            else
+                saida <= saida;
+        end
+    end
 
 endmodule
